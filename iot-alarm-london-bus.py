@@ -20,15 +20,17 @@ from threading import Thread
 import datetime
 from modules.buzzer import *
 from modules.MathsTime import *
-try:
-	import RPi.GPIO as GPIO
-	#Initialise GPIO pins
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-except ImportError:
-	print("RPi GPIO module not installed...")
-
+from Adafruit_IO import Client
+import RPi.GPIO as GPIO
 from TfLAPI.LondonBusAPI import *
+
+#Initialise GPIO pins
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Initialise Adafruit IO client
+adafruitIOKey = ''
+aio = Client(adafruitIOKey)
 
 # Initialise TfL Bus Arrivals API
 tfl = TfLBusArrivalsAPI()
@@ -97,6 +99,7 @@ def alarmBuzzLoop():
 			buzz(20,0.5)
 			time.sleep(0.25)
 			buzzingBool = 1
+			aio.send('iot-alarm', 'Alarm time!')
 			print("Alarm time is %s" % aTD)
 			print("Wake up to catch the %s on time!" % busLine)
 		time.sleep(1.25)
