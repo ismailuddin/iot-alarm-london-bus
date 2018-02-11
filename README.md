@@ -1,5 +1,5 @@
 # IoT connected alarm clock powered by London live bus arrivals
-![IoT London bus alarm](http://www.scienceexposure.com/wp-content/uploads/2015/12/featured-img-945x526.png)
+![IoT London bus alarm](http://www.scienceexposure.com/wp-content/uploads/2015/12/featured-img.png)
 This project allows you to create a connected smart alarm clock (Internet of Things), which updates it's alarm time according to live bus arrival times for London buses (powered by Transport for London's API). The project is written in Python, and aimed to run on a Raspberry Pi.
 
 # Requirements
